@@ -67,6 +67,11 @@ class TestStringCalculator(unittest.TestCase):
         """
         self.assertEqual(add("1,,2"), 3)
     
+    def test_whitespace_handling(self):
+        """
+        Test that numbers with extra whitespace are handled correctly.
+        """
+        self.assertEqual(add(" 1 , 2 "), 3)
 if __name__ == "__main__":
     # Run all unit tests
     unittest.main()
