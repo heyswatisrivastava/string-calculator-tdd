@@ -18,7 +18,11 @@ def add(numbers: str) -> int:
     delimiter = ",|\n"
     if numbers.startswith("//"):
         parts = numbers.split("\n", 1)
-        delimiter = re.escape(parts[0][2:])
+        custom_delim = parts[0][2:]
+        # If the custom delimiter is a digit, raise ValueError (ambiguous)
+        if custom_delim.isdigit():
+            raise ValueError("Custom delimiter cannot be a digit.")
+        delimiter = re.escape(custom_delim)
         numbers = parts[1]
     tokens = re.split(delimiter, numbers)
     # Report all negative numbers in the error message

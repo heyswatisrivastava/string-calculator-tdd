@@ -106,7 +106,14 @@ class TestStringCalculator(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             add("1, -2,3")
         self.assertIn("negative numbers not allowed -2", str(context.exception))
-        
+    
+    def test_custom_delimiter_is_digit(self):
+        """
+        Test that a digit as a custom delimiter raises ValueError (ambiguous).
+        """
+        with self.assertRaises(ValueError):
+            add("//1\n211")
+    
 if __name__ == "__main__":
     # Run all unit tests
     unittest.main()
