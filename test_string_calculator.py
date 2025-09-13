@@ -38,7 +38,22 @@ class TestStringCalculator(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             add("1,-2,-3,4")
         self.assertIn("negative numbers not allowed -2,-3", str(context.exception))
-        
+
+    def test_custom_delimiter_with_invalid_input(self):
+        """
+        Test that custom delimiter with invalid input raises ValueError.
+        """
+        with self.assertRaises(ValueError):
+            add("//;\n1;X;3")
+
+    def test_multiple_custom_delimiters_not_supported(self):
+        """
+        Test that multiple custom delimiters are not supported and raise ValueError.
+        """
+        with self.assertRaises(ValueError):
+            add("//;,\n1;2,3")
+
+
 if __name__ == "__main__":
     # Run all unit tests
     unittest.main()
