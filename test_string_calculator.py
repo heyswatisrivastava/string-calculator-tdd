@@ -99,7 +99,14 @@ class TestStringCalculator(unittest.TestCase):
         with self.assertRaises(ValueError):
             add("//|\n1|two|3")
     
-    
+    def test_negative_number_with_whitespace(self):
+        """
+        Test that negative numbers with whitespace are detected.
+        """
+        with self.assertRaises(ValueError) as context:
+            add("1, -2,3")
+        self.assertIn("negative numbers not allowed -2", str(context.exception))
+        
 if __name__ == "__main__":
     # Run all unit tests
     unittest.main()
