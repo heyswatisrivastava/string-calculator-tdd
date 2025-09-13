@@ -7,7 +7,12 @@ def add(numbers: str) -> int:
 
     Returns:
         int: The sum of the numbers. Returns 0 for an empty string.
+    Raises:
+        ValueError: If any input is not a valid integer.
     """
-    # Return 0 if the input string is empty
     if numbers == "":
         return 0
+    try:
+        return sum(int(n) for n in numbers.split(",") if n.strip())
+    except ValueError:
+        raise ValueError("Invalid input: all values must be integers.")

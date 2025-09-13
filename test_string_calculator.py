@@ -11,7 +11,14 @@ class TestStringCalculator(unittest.TestCase):
         Test that an empty string returns 0.
         """
         self.assertEqual(add(""), 0)
-
+    
+    def test_invalid_input(self):
+        """
+        Test that invalid input raises a ValueError.
+        """
+        with self.assertRaises(ValueError):
+            add("1,a,3")
+    
 if __name__ == "__main__":
     # Run all unit tests
     unittest.main()
