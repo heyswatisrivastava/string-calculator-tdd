@@ -53,6 +53,13 @@ class TestStringCalculator(unittest.TestCase):
         with self.assertRaises(ValueError):
             add("//;,\n1;2,3")
 
+    def test_negative_numbers_with_custom_delimiter(self):
+        """
+        Test that negative numbers with custom delimiter raise exception listing all negatives.
+        """
+        with self.assertRaises(ValueError) as context:
+            add("//;\n-1;2;-3")
+        self.assertIn("negative numbers not allowed -1,-3", str(context.exception))
 
 if __name__ == "__main__":
     # Run all unit tests
