@@ -134,7 +134,43 @@ class TestStringCalculator(unittest.TestCase):
         Test that input with only whitespace returns 0.
         """
         self.assertEqual(add("   "), 0)
-        
+
+    def test_single_number(self):
+        """
+        Test that a single number string returns that number.
+        """
+        self.assertEqual(add("5"), 5)
+
+    def test_two_numbers(self):
+        """
+        Test that two comma-separated numbers return their sum.
+        """
+        self.assertEqual(add("1,2"), 3)
+
+    def test_multiple_numbers(self):
+        """
+        Test that multiple comma-separated numbers return their sum.
+        """
+        self.assertEqual(add("1,2,3,4"), 10)
+
+    def test_numbers_with_newline_and_comma(self):
+        """
+        Test that numbers separated by newlines and commas are summed correctly.
+        """
+        self.assertEqual(add("1\n2,3\n4"), 10)
+
+    def test_custom_delimiter_with_multiple_numbers(self):
+        """
+        Test that custom delimiter works with multiple numbers.
+        """
+        self.assertEqual(add("//|\n1|2|3|4"), 10)
+
+    def test_custom_delimiter_with_spaces(self):
+        """
+        Test that custom delimiter works with numbers containing spaces.
+        """
+        self.assertEqual(add("//;\n 1 ; 2 ; 3 "), 6)
+    
 if __name__ == "__main__":
     # Run all unit tests
     unittest.main()
