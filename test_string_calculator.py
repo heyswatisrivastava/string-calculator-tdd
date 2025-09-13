@@ -86,6 +86,13 @@ class TestStringCalculator(unittest.TestCase):
         """
         self.assertEqual(add("//;\n"), 0)
 
+    def test_only_delimiters_no_numbers(self):
+        """
+        Test that a string with only delimiters returns 0.
+        """
+        self.assertEqual(add(",,,"), 0)
+    
+    
 if __name__ == "__main__":
     # Run all unit tests
     unittest.main()
