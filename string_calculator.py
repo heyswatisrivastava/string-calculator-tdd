@@ -12,6 +12,8 @@ def add(numbers: str) -> int:
     """
     if numbers == "":
         return 0
+    # Replace newlines with commas for uniform splitting
+    numbers = numbers.replace('\n', ',')
     try:
         return sum(int(n) for n in numbers.split(",") if n.strip())
     except ValueError:

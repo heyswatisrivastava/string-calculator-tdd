@@ -19,6 +19,12 @@ class TestStringCalculator(unittest.TestCase):
         with self.assertRaises(ValueError):
             add("1,a,3")
     
+    def test_newline_delimiter(self):
+        """
+        Test that new lines between numbers are handled as delimiters.
+        """
+        self.assertEqual(add("1\n2,3"), 6)
+
 if __name__ == "__main__":
     # Run all unit tests
     unittest.main()
