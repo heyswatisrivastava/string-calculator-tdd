@@ -61,6 +61,12 @@ class TestStringCalculator(unittest.TestCase):
             add("//;\n-1;2;-3")
         self.assertIn("negative numbers not allowed -1,-3", str(context.exception))
 
+    def test_empty_number_between_delimiters(self):
+        """
+        Test that empty numbers between delimiters are ignored.
+        """
+        self.assertEqual(add("1,,2"), 3)
+    
 if __name__ == "__main__":
     # Run all unit tests
     unittest.main()
