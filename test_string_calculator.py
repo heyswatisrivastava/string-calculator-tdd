@@ -79,6 +79,12 @@ class TestStringCalculator(unittest.TestCase):
         """
         with self.assertRaises(ValueError):
             add("//\n1;2")
+    
+    def test_custom_delimiter_missing_numbers(self):
+        """
+        Test that a custom delimiter definition with no numbers returns 0.
+        """
+        self.assertEqual(add("//;\n"), 0)
 
 if __name__ == "__main__":
     # Run all unit tests
