@@ -72,6 +72,14 @@ class TestStringCalculator(unittest.TestCase):
         Test that numbers with extra whitespace are handled correctly.
         """
         self.assertEqual(add(" 1 , 2 "), 3)
+    
+    def test_missing_custom_delimiter_definition(self):
+        """
+        Test that a custom delimiter prefix without a delimiter raises ValueError.
+        """
+        with self.assertRaises(ValueError):
+            add("//\n1;2")
+
 if __name__ == "__main__":
     # Run all unit tests
     unittest.main()
