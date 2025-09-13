@@ -92,6 +92,13 @@ class TestStringCalculator(unittest.TestCase):
         """
         self.assertEqual(add(",,,"), 0)
     
+    def test_non_numeric_with_custom_delimiter(self):
+        """
+        Test that non-numeric input with custom delimiter raises ValueError.
+        """
+        with self.assertRaises(ValueError):
+            add("//|\n1|two|3")
+    
     
 if __name__ == "__main__":
     # Run all unit tests
