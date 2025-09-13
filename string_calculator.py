@@ -1,3 +1,5 @@
+import re
+
 def add(numbers: str) -> int:
     """
     Adds numbers provided in a comma-separated string.
@@ -13,8 +15,14 @@ def add(numbers: str) -> int:
     if numbers == "":
         return 0
     # Replace newlines with commas for uniform splitting
-    numbers = numbers.replace('\n', ',')
+    delimiter = ",|\n"
+    if numbers.startswith("//"):
+        parts = numbers.split("\n", 1)
+        delimiter = re.escape(parts[0][2:])
+        numbers = parts[1]
+    # Split using the delimiter(s)
+    tokens = re.split(delimiter, numbers)
     try:
-        return sum(int(n) for n in numbers.split(",") if n.strip())
+        return sum(int(n) for n in tokens if n.strip())
     except ValueError:
         raise ValueError("Invalid input: all values must be integers.")
