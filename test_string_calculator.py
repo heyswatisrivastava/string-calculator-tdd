@@ -114,6 +114,13 @@ class TestStringCalculator(unittest.TestCase):
         with self.assertRaises(ValueError):
             add("//1\n211")
     
+    def test_custom_delimiter_missing_newline(self):
+        """
+        Test that a custom delimiter definition without a newline raises ValueError.
+        """
+        with self.assertRaises(ValueError):
+            add("//;1;2")
+
 if __name__ == "__main__":
     # Run all unit tests
     unittest.main()

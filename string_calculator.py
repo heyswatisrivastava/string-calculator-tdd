@@ -22,6 +22,9 @@ def add(numbers: str) -> int:
         # If the custom delimiter is a digit, raise ValueError (ambiguous)
         if custom_delim.isdigit():
             raise ValueError("Custom delimiter cannot be a digit.")
+        # If newline is missing after custom delimiter, raise ValueError
+        if len(parts) < 2:
+            raise ValueError("Custom delimiter definition must be followed by a newline.")
         delimiter = re.escape(custom_delim)
         numbers = parts[1]
     tokens = re.split(delimiter, numbers)
