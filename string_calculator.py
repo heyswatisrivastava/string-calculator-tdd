@@ -20,8 +20,11 @@ def add(numbers: str) -> int:
         parts = numbers.split("\n", 1)
         delimiter = re.escape(parts[0][2:])
         numbers = parts[1]
-    # Split using the delimiter(s)
     tokens = re.split(delimiter, numbers)
+    # Report all negative numbers in the error message
+    negatives = [int(n) for n in tokens if n.strip() and int(n) < 0]
+    if negatives:
+        raise ValueError(f"negative numbers not allowed {','.join(map(str, negatives))}")
     try:
         return sum(int(n) for n in tokens if n.strip())
     except ValueError:
